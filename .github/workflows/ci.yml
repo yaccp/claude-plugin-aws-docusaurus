@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate Plugin
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Validate plugin structure
+        run: |
+          chmod +x tests/validate-plugin.sh
+          ./tests/validate-plugin.sh
+
+      - name: Validate templates
+        run: |
+          chmod +x tests/validate-templates.sh
+          ./tests/validate-templates.sh
+
+  lint-json:
+    name: Lint JSON
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate JSON files
+        run: |
+          echo "Validating JSON files..."
+          for file in $(find . -name "*.json" -type f); do
+            echo "Checking $file"
+            if ! jq empty "$file" 2>/dev/null; then
+              echo "Invalid JSON: $file"
+              exit 1
+            fi
+          done
+          echo "All JSON files valid!"
+
+  lint-markdown:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+
+      - name: Lint Markdown
+        run: markdownlint '**/*.md' --ignore node_modules || true
+
+  security:
+    name: Security Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check for secrets
+        run: |
+          echo "Checking for potential secrets..."
+          FOUND=0
+
+          # Check for AWS keys
+          if grep -rE "AKIA[0-9A-Z]{16}" . --include="*.js" --include="*.json" 2>/dev/null; then
+            echo "Potential AWS key found"
+            FOUND=1
+          fi
+
+          if [[ $FOUND -eq 1 ]]; then
+            echo "Review the above for potential secrets"
+            exit 1
+          else
+            echo "No obvious secrets found"
+          fi
+
+  version-check:
+    name: Version Consistency
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check version consistency
+        run: |
+          PLUGIN_VERSION=$(jq -r '.version' .claude-plugin/plugin.json)
+          MARKETPLACE_VERSION=$(jq -r '.plugins[0].version' .claude-plugin/marketplace.json)
+
+          echo "plugin.json version: $PLUGIN_VERSION"
+          echo "marketplace.json version: $MARKETPLACE_VERSION"
+
+          if [[ "$PLUGIN_VERSION" != "$MARKETPLACE_VERSION" ]]; then
+            echo "Version mismatch!"
+            exit 1
+          fi
+
+          echo "Versions are consistent"

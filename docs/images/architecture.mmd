@@ -1,0 +1,31 @@
+flowchart TB
+    USER["Browser"]
+
+    subgraph DNS["Route53"]
+        R53["A Record Alias"]
+    end
+
+    subgraph CDN["CloudFront Distribution"]
+        EDGE["Edge Locations"]
+        LAMBDA["Lambda@Edge<br/>Basic Auth"]
+        CERT["ACM Certificate<br/>TLS 1.2+"]
+        CACHE["Cache Layer"]
+    end
+
+    subgraph STORAGE["S3 Bucket"]
+        OAI["Origin Access Identity"]
+        FILES["Static Files"]
+    end
+
+    USER -->|"HTTPS"| R53
+    R53 --> EDGE
+    EDGE --> LAMBDA
+    LAMBDA --> CERT
+    CERT --> CACHE
+    CACHE -->|"OAI Only"| OAI
+    OAI --> FILES
+
+    style USER fill:#e3f2fd,stroke:#1565c0
+    style DNS fill:#fff8e1,stroke:#f9a825
+    style CDN fill:#fce4ec,stroke:#c2185b
+    style STORAGE fill:#e8f5e9,stroke:#2e7d32

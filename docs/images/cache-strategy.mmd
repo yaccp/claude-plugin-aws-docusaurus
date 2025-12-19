@@ -1,0 +1,24 @@
+flowchart LR
+    subgraph FILES["File Types"]
+        JS["*.js, *.css"]
+        IMG["Images, Fonts"]
+        HTML["*.html"]
+        SW["sw.js"]
+        XML["sitemap.xml"]
+    end
+
+    subgraph CACHE["Cache Strategy"]
+        LONG["1 Year Cache<br/>immutable"]
+        NONE["No Cache<br/>must-revalidate"]
+        DAY["1 Day Cache"]
+    end
+
+    JS --> LONG
+    IMG --> LONG
+    HTML --> NONE
+    SW --> NONE
+    XML --> DAY
+
+    style LONG fill:#c8e6c9,stroke:#2e7d32
+    style NONE fill:#ffcdd2,stroke:#c62828
+    style DAY fill:#fff9c4,stroke:#f9a825

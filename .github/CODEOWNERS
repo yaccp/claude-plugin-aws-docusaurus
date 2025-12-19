@@ -1,0 +1,15 @@
+# Default owner for everything
+* @yaccp
+
+# Documentation
+*.md @yaccp
+docs/ @yaccp
+
+# Plugin configuration
+.claude-plugin/ @yaccp
+
+# AWS templates
+templates/ @yaccp
+
+# CI/CD
+.github/ @yaccp

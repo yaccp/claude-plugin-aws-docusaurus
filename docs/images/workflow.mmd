@@ -1,0 +1,23 @@
+flowchart TB
+    subgraph INIT["1. INIT"]
+        I1["npx create-docusaurus"] --> I2["docusaurus.config.ts"] --> I3["deploy.sh"]
+    end
+
+    subgraph INFRA["2. INFRA"]
+        A1["S3 Bucket"] --> A2["ACM Certificate"] --> A3["CloudFront OAI"] --> A4["CloudFront Distribution"]
+        A4 --> A5["Lambda@Edge"]
+        A4 --> A6["Route53 DNS"]
+    end
+
+    subgraph DEPLOY["3. DEPLOY"]
+        D1["npm run build"] --> D2["S3 Sync - Assets"] --> D3["S3 Sync - HTML"] --> D4["CloudFront Invalidation"]
+    end
+
+    INIT --> INFRA
+    INFRA --> DEPLOY
+    DEPLOY --> LIVE["SITE LIVE"]
+
+    style INIT fill:#e1f5fe,stroke:#01579b
+    style INFRA fill:#fff3e0,stroke:#e65100
+    style DEPLOY fill:#e8f5e9,stroke:#1b5e20
+    style LIVE fill:#c8e6c9,stroke:#2e7d32

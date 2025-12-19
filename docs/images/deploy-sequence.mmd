@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant Dev as Developer
+    participant CLI as Claude Code
+    participant S3 as S3 Bucket
+    participant CF as CloudFront
+    participant DNS as Route53
+
+    Dev->>CLI: /aws-docusaurus deploy
+    CLI->>CLI: npm run build
+    CLI->>S3: Upload static assets<br/>Cache: 1 year
+    CLI->>S3: Upload HTML files<br/>Cache: 0
+    CLI->>S3: Upload JSON/sitemap<br/>Cache: 0-1 day
+    CLI->>CF: Create invalidation /*
+    CF-->>CLI: Invalidation ID
+    CLI-->>Dev: Deployment complete!
+
+    Dev->>DNS: Access https://domain
+    DNS->>CF: Route to CloudFront
+    CF->>S3: Fetch content via OAI
+    S3-->>CF: Return files
+    CF-->>Dev: Serve with cache headers
