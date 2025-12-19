@@ -1,0 +1,34 @@
+{
+  "name": "staticforge-marketplace",
+  "description": "Deploy static sites to AWS with zero configuration headaches",
+  "owner": {
+    "name": "Claude Feraudet",
+    "url": "https://github.com/cferaudet"
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Complete AWS deployment solutions for static sites"
+  },
+  "plugins": [
+    {
+      "name": "staticforge",
+      "source": ".",
+      "description": "Deploy static sites to AWS with S3, CloudFront, ACM, Route53, and optional Lambda@Edge Basic Auth",
+      "version": "1.0.0",
+      "author": {
+        "name": "Claude Feraudet"
+      },
+      "license": "MIT",
+      "keywords": [
+        "aws",
+        "docusaurus",
+        "static-site",
+        "deployment",
+        "cloudfront",
+        "s3",
+        "lambda-edge"
+      ],
+      "category": "deployment"
+    }
+  ]
+}

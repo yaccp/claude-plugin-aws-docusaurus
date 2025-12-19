@@ -1,0 +1,59 @@
+{
+  "name": "staticforge",
+  "version": "1.0.0",
+  "description": "Deploy Docusaurus sites to AWS with S3, CloudFront, and optional Basic Auth. Complete infrastructure-as-code solution.",
+  "author": "Claude Feraudet",
+  "license": "MIT",
+  "repository": "https://github.com/cferaudet/staticforge",
+  "keywords": [
+    "aws",
+    "docusaurus",
+    "s3",
+    "cloudfront",
+    "static-site",
+    "deployment",
+    "infrastructure"
+  ],
+  "commands": [
+    {
+      "name": "init",
+      "description": "Initialize a new Docusaurus project pre-configured for AWS deployment",
+      "path": "commands/init.md"
+    },
+    {
+      "name": "infra",
+      "description": "Create complete AWS infrastructure (S3, CloudFront, ACM, Route53, Lambda@Edge)",
+      "path": "commands/infra.md"
+    },
+    {
+      "name": "deploy",
+      "description": "Build and deploy your site to AWS with optimized caching",
+      "path": "commands/deploy.md"
+    },
+    {
+      "name": "status",
+      "description": "Check the status of your AWS infrastructure and deployment",
+      "path": "commands/status.md"
+    }
+  ],
+  "skills": [
+    {
+      "name": "staticforge",
+      "description": "Complete workflow for deploying static sites to AWS",
+      "path": "skills/staticforge.md"
+    }
+  ],
+  "templates": {
+    "path": "templates"
+  },
+  "config": {
+    "aws_region": {
+      "description": "Default AWS region for deployment",
+      "default": "eu-west-3"
+    },
+    "default_cache_ttl": {
+      "description": "Default cache TTL for static assets (seconds)",
+      "default": 31536000
+    }
+  }
+}
