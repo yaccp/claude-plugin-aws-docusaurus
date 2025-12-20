@@ -4,7 +4,7 @@ Check AWS infrastructure and deployment status.
 
 ## Configuration Storage
 
-Read configuration from `.claude/aws-docusaurus/config.json`:
+Read configuration from `.claude/yaccp/aws-docusaurus/config.json`:
 
 ```json
 {
@@ -26,7 +26,7 @@ Read configuration from `.claude/aws-docusaurus/config.json`:
 
 Read existing config:
 ```bash
-cat .claude/aws-docusaurus/config.json 2>/dev/null
+cat .claude/yaccp/aws-docusaurus/config.json 2>/dev/null
 ```
 
 ### Step 2: Check and Prompt for Variables
@@ -63,7 +63,7 @@ Use AskUserQuestion:
 
 ### Step 4: Save Configuration (if new values provided)
 
-If user provided new values, update `.claude/aws-docusaurus/config.json`.
+If user provided new values, update `.claude/yaccp/aws-docusaurus/config.json`.
 
 ### Step 5: Execute Status Checks
 

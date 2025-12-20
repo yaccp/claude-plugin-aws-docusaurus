@@ -4,7 +4,7 @@ Deploy static site to AWS S3 + CloudFront.
 
 ## Configuration Storage
 
-Store and retrieve configuration from `.claude/aws-docusaurus/config.json`:
+Store and retrieve configuration from `.claude/yaccp/aws-docusaurus/config.json`:
 
 ```json
 {
@@ -26,7 +26,7 @@ Store and retrieve configuration from `.claude/aws-docusaurus/config.json`:
 
 Read existing config:
 ```bash
-cat .claude/aws-docusaurus/config.json 2>/dev/null
+cat .claude/yaccp/aws-docusaurus/config.json 2>/dev/null
 ```
 
 Also check if values exist in `infra` section (S3_BUCKET, CLOUDFRONT_DISTRIBUTION_ID).
@@ -92,10 +92,10 @@ Use AskUserQuestion:
 
 ### Step 5: Save Configuration
 
-After confirmation, save to `.claude/aws-docusaurus/config.json`:
+After confirmation, save to `.claude/yaccp/aws-docusaurus/config.json`:
 
 ```bash
-mkdir -p .claude/aws-docusaurus
+mkdir -p .claude/yaccp/aws-docusaurus
 ```
 
 Write/update config.json with deploy section.
@@ -133,7 +133,7 @@ Write/update config.json with deploy section.
 
 ```
 Deployment successful!
-Configuration saved to .claude/aws-docusaurus/config.json
+Configuration saved to .claude/yaccp/aws-docusaurus/config.json
 
 Site URL:        https://${DOMAIN}
 Files uploaded:  ${FILE_COUNT}

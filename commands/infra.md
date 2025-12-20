@@ -4,7 +4,7 @@ Create complete AWS infrastructure for static site hosting.
 
 ## Configuration Storage
 
-Store and retrieve configuration from `.claude/aws-docusaurus/config.json`:
+Store and retrieve configuration from `.claude/yaccp/aws-docusaurus/config.json`:
 
 ```json
 {
@@ -26,14 +26,14 @@ Store and retrieve configuration from `.claude/aws-docusaurus/config.json`:
 
 Read existing config:
 ```bash
-cat .claude/aws-docusaurus/config.json 2>/dev/null
+cat .claude/yaccp/aws-docusaurus/config.json 2>/dev/null
 ```
 
 ### Step 2: Check and Prompt for Variables
 
 For each variable, check in this order:
 1. Environment variable (`echo $VAR`)
-2. Saved config (`.claude/aws-docusaurus/config.json` → infra section)
+2. Saved config (`.claude/yaccp/aws-docusaurus/config.json` → infra section)
 3. If not found, use AskUserQuestion to prompt
 
 **Required:**
@@ -85,10 +85,10 @@ Use AskUserQuestion:
 
 ### Step 5: Save Configuration
 
-After confirmation, save to `.claude/aws-docusaurus/config.json`:
+After confirmation, save to `.claude/yaccp/aws-docusaurus/config.json`:
 
 ```bash
-mkdir -p .claude/aws-docusaurus
+mkdir -p .claude/yaccp/aws-docusaurus
 ```
 
 Write/update config.json with infra section (exclude AUTH_PASSWORD for security).
@@ -120,7 +120,7 @@ Update config.json with created resources:
 Display:
 ```
 Infrastructure created!
-Configuration saved to .claude/aws-docusaurus/config.json
+Configuration saved to .claude/yaccp/aws-docusaurus/config.json
 
 S3 Bucket:       ${SITE_NAME}
 CloudFront ID:   ${CF_ID}
