@@ -2,6 +2,8 @@
 
 > Deploy static sites to AWS with zero configuration headaches.
 
+> **Migration Notice (v1.1.5):** The plugin has been renamed from `aws-docusaurus` to `yaccp-aws-docusaurus`. See [CHANGELOG.md](CHANGELOG.md#from-110-to-115) for migration instructions.
+
 [![Yaccp Plugin](https://img.shields.io/badge/Yaccp-Plugin-blue)](https://github.com/yaccp/yaccp)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-green)](https://claude.ai/code)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
@@ -27,7 +29,7 @@
 /plugin marketplace add yaccp/yaccp
 
 # Install the plugin
-/plugin install aws-docusaurus
+/plugin install yaccp-aws-docusaurus
 ```
 
 ### Usage
@@ -37,28 +39,28 @@
 export PROJECT_NAME="my-docs"
 export SITE_TITLE="My Documentation"
 export SITE_URL="https://docs.example.com"
-# Ask Claude: "Initialize project with /aws-docusaurus init"
+/yaccp-aws-docusaurus:init
 
 # 2. Create AWS infrastructure
 export SITE_NAME="my-docs"
 export DOMAIN="docs.example.com"
 export HOSTED_ZONE_ID="Z1234567890ABC"
-# Ask Claude: "Create infrastructure with /aws-docusaurus infra"
+/yaccp-aws-docusaurus:infra
 
 # 3. Deploy
 export S3_BUCKET="my-docs"
 export CLOUDFRONT_DISTRIBUTION_ID="E1234567890ABC"
-# Ask Claude: "Deploy with /aws-docusaurus deploy"
+/yaccp-aws-docusaurus:deploy
 ```
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/aws-docusaurus init` | Initialize a new Docusaurus project pre-configured for AWS |
-| `/aws-docusaurus infra` | Create complete AWS infrastructure (S3, CloudFront, ACM, Route53) |
-| `/aws-docusaurus deploy` | Build and deploy site with optimized caching |
-| `/aws-docusaurus status` | Check infrastructure status and health |
+| `/yaccp-aws-docusaurus:init` | Initialize a new Docusaurus project pre-configured for AWS |
+| `/yaccp-aws-docusaurus:infra` | Create complete AWS infrastructure (S3, CloudFront, ACM, Route53) |
+| `/yaccp-aws-docusaurus:deploy` | Build and deploy site with optimized caching |
+| `/yaccp-aws-docusaurus:status` | Check infrastructure status and health |
 
 ## Architecture
 

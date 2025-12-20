@@ -5,6 +5,21 @@ All notable changes to AWS Docusaurus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.5] - 2024-12-20
+
+### Breaking Changes
+
+- **Plugin renamed** from `aws-docusaurus` to `yaccp-aws-docusaurus`
+  - Commands now use `/yaccp-aws-docusaurus:*` prefix
+  - See [Migration Guide](#from-110-to-115) below
+
+### Changed
+
+- Updated plugin name for marketplace consistency
+- Configuration path updated to `.claude/yaccp/aws-docusaurus/`
+
+---
+
 ## [1.1.0] - 2024-12-20
 
 ### Changed
@@ -109,12 +124,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| 1.1.5 | 2024-12-20 | **Breaking:** Plugin renamed to `yaccp-aws-docusaurus` |
 | 1.1.0 | 2024-12-20 | Yaccp marketplace, maintenance agents, Mermaid diagrams |
 | 1.0.0 | 2024-12-19 | Initial release |
 
 ---
 
 ## Upgrade Guide
+
+### From 1.1.0 to 1.1.5
+
+**Breaking Change:** The plugin has been renamed from `aws-docusaurus` to `yaccp-aws-docusaurus`.
+
+1. **Update your settings file** (`.claude/settings.local.json`):
+
+   ```diff
+   "enabledPlugins": {
+   -  "aws-docusaurus@yaccp": true
+   +  "yaccp-aws-docusaurus@yaccp": true
+   }
+   ```
+
+2. **Update command references** in your scripts:
+
+   ```diff
+   - /aws-docusaurus init
+   + /yaccp-aws-docusaurus:init
+
+   - /aws-docusaurus infra
+   + /yaccp-aws-docusaurus:infra
+
+   - /aws-docusaurus deploy
+   + /yaccp-aws-docusaurus:deploy
+
+   - /aws-docusaurus status
+   + /yaccp-aws-docusaurus:status
+   ```
+
+3. **Existing infrastructure is unaffected** - no AWS changes needed.
+
+---
 
 ### From pre-release to 1.0.0
 
