@@ -2,8 +2,6 @@
 
 > Deploy static sites to AWS with zero configuration headaches.
 
-> **Migration Notice (v1.1.5):** The plugin has been renamed from `aws-docusaurus` to `yaccp-aws-docusaurus`. See [CHANGELOG.md](CHANGELOG.md#from-110-to-115) for migration instructions.
-
 [![Yaccp Plugin](https://img.shields.io/badge/Yaccp-Plugin-blue)](https://github.com/yaccp/yaccp)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-green)](https://claude.ai/code)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
