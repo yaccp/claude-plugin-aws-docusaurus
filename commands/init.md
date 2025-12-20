@@ -2,25 +2,31 @@
 
 Initialize a new Docusaurus project pre-configured for AWS deployment.
 
-## Required Environment Variables
+## Interactive Configuration
 
-```bash
-export PROJECT_NAME="my-docs"                    # Directory name
-export SITE_TITLE="My Documentation"             # Site title
-export SITE_URL="https://docs.example.com"       # Production URL
-```
+Before proceeding, check if required environment variables are set. If any are missing, ask the user for the values using AskUserQuestion.
 
-## Optional Environment Variables
+### Required Variables Check
 
-```bash
-export SITE_TAGLINE="Documentation for my project"
-export ORG_NAME="my-org"                         # GitHub org
-export LOCALE="en"                               # fr, en, de, etc.
-export S3_BUCKET="my-docs-bucket"                # For deploy.sh
-export CLOUDFRONT_DISTRIBUTION_ID="E1234..."     # For deploy.sh
-export AWS_PROFILE="default"
-export AWS_REGION="eu-west-3"
-```
+Check these environment variables and prompt for missing ones:
+
+1. **PROJECT_NAME** - Directory/project name (e.g., "my-docs")
+2. **SITE_TITLE** - Site title displayed in header (e.g., "My Documentation")
+3. **SITE_URL** - Production URL with https:// (e.g., "https://docs.example.com")
+
+### Optional Variables (ask if user wants to customize)
+
+- **SITE_TAGLINE** - Tagline under title (default: "Documentation")
+- **ORG_NAME** - GitHub organization (default: derived from URL)
+- **LOCALE** - Site language: en, fr, de, etc. (default: "en")
+- **AWS_REGION** - AWS region (default: "eu-west-3")
+
+## Execution Flow
+
+1. Check environment variables
+2. If any required variable is missing, use AskUserQuestion to prompt the user
+3. Confirm configuration with user before proceeding
+4. Execute the initialization steps
 
 ## What Gets Created
 
@@ -97,5 +103,5 @@ npm run serve
 
 ## Next Steps
 
-1. Run `/aws-docusaurus infra` to create AWS infrastructure
-2. Run `/aws-docusaurus deploy` to deploy your site
+1. Run `/aws-docusaurus:infra` to create AWS infrastructure
+2. Run `/aws-docusaurus:deploy` to deploy your site

@@ -2,18 +2,34 @@
 
 Check the status of your AWS infrastructure and recent deployments.
 
-## Required Environment Variables
+## Interactive Configuration
 
-```bash
-export CLOUDFRONT_DISTRIBUTION_ID="E1234567890ABC"
-export S3_BUCKET="my-site"
-export AWS_PROFILE="default"
-export AWS_REGION="eu-west-3"
-```
+Before proceeding, check if required environment variables are set. If any are missing, ask the user for the values using AskUserQuestion.
 
-## Status Checks
+### Required Variables Check
 
-### CloudFront Distribution Status
+Check these environment variables and prompt for missing ones:
+
+1. **CLOUDFRONT_DISTRIBUTION_ID** - CloudFront distribution ID (e.g., "E1234567890ABC")
+2. **S3_BUCKET** - S3 bucket name (e.g., "my-site")
+3. **AWS_PROFILE** - AWS CLI profile (default: "default")
+4. **AWS_REGION** - AWS region (default: "eu-west-3")
+
+### Optional Variables
+
+- **DOMAIN** - Custom domain for health checks
+- **SITE_NAME** - For Lambda@Edge status (if using auth)
+
+## Execution Flow
+
+1. Check environment variables
+2. Use AskUserQuestion for any missing required variables
+3. Run all status checks
+4. Display summary with health indicators
+
+## Status Checks to Perform
+
+### 1. CloudFront Distribution Status
 
 ```bash
 aws cloudfront get-distribution \
@@ -27,18 +43,16 @@ aws cloudfront get-distribution \
   }'
 ```
 
-Expected output for healthy distribution:
+Expected healthy output:
 ```json
 {
   "Status": "Deployed",
   "DomainName": "d1234567890.cloudfront.net",
-  "Enabled": true,
-  "PriceClass": "PriceClass_100",
-  "HttpVersion": "http2"
+  "Enabled": true
 }
 ```
 
-### S3 Bucket Status
+### 2. S3 Bucket Status
 
 ```bash
 # Check bucket exists and is accessible
@@ -51,7 +65,7 @@ aws s3 ls s3://${S3_BUCKET}/ --recursive --summarize | tail -2
 aws s3 ls s3://${S3_BUCKET}/ --recursive --human-readable | head -20
 ```
 
-### Recent Invalidations
+### 3. Recent Invalidations
 
 ```bash
 aws cloudfront list-invalidations \
@@ -60,7 +74,7 @@ aws cloudfront list-invalidations \
   --output table
 ```
 
-### Certificate Status
+### 4. Certificate Status
 
 ```bash
 # Get certificate ARN from distribution
@@ -81,7 +95,7 @@ aws acm describe-certificate \
   }'
 ```
 
-### Lambda@Edge Status (if using auth)
+### 5. Lambda@Edge Status (if using auth)
 
 ```bash
 aws lambda get-function \
@@ -94,61 +108,50 @@ aws lambda get-function \
   }'
 ```
 
-## Health Check Commands
-
-### Test Site Availability
+### 6. Site Health Check (if DOMAIN is set)
 
 ```bash
 # Basic connectivity
 curl -I https://${DOMAIN}
 
-# With timing
+# Response timing
 curl -w "Connect: %{time_connect}s\nTTFB: %{time_starttransfer}s\nTotal: %{time_total}s\n" \
   -o /dev/null -s https://${DOMAIN}
-
-# With auth (if enabled)
-curl -u ${AUTH_USERNAME}:${AUTH_PASSWORD} -I https://${DOMAIN}
 ```
 
-### Check Cache Headers
+## Status Summary Format
 
-```bash
-# HTML should have no-cache
-curl -sI https://${DOMAIN}/index.html | grep -i cache-control
-# Expected: cache-control: public, max-age=0, must-revalidate
+Display a summary table:
 
-# Static assets should have long cache
-curl -sI https://${DOMAIN}/assets/css/styles.*.css | grep -i cache-control
-# Expected: cache-control: public, max-age=31536000, immutable
+```
+AWS Docusaurus Status
+=====================
+
+CloudFront Distribution: ${CLOUDFRONT_DISTRIBUTION_ID}
+├── Status: Deployed
+├── Domain: d1234567890.cloudfront.net
+└── Enabled: true
+
+S3 Bucket: ${S3_BUCKET}
+├── Objects: 156
+└── Size: 12.4 MB
+
+Certificate:
+├── Status: ISSUED
+├── Domain: docs.example.com
+└── Expires: 2025-12-20
+
+Last Invalidations:
+├── I1234... - Completed - 2024-12-20 10:30
+└── I5678... - Completed - 2024-12-19 15:45
+
+Site Health: https://${DOMAIN}
+├── Status: 200 OK
+├── TTFB: 0.123s
+└── Cache-Control: OK
 ```
 
-## CloudWatch Metrics
-
-Monitor these metrics in CloudWatch:
-
-| Metric | Description | Alert Threshold |
-|--------|-------------|-----------------|
-| `Requests` | Total requests | Anomaly detection |
-| `BytesDownloaded` | Bandwidth | Budget threshold |
-| `4xxErrorRate` | Client errors | > 5% |
-| `5xxErrorRate` | Server errors | > 1% |
-| `CacheHitRate` | Cache efficiency | < 80% |
-
-### Quick Metrics Query
-
-```bash
-# Get request count (last hour)
-aws cloudwatch get-metric-statistics \
-  --namespace AWS/CloudFront \
-  --metric-name Requests \
-  --dimensions Name=DistributionId,Value=${CLOUDFRONT_DISTRIBUTION_ID} \
-  --start-time $(date -u -v-1H +%Y-%m-%dT%H:%M:%SZ) \
-  --end-time $(date -u +%Y-%m-%dT%H:%M:%SZ) \
-  --period 3600 \
-  --statistics Sum
-```
-
-## Troubleshooting
+## Troubleshooting Guide
 
 | Symptom | Check | Solution |
 |---------|-------|----------|
@@ -158,21 +161,13 @@ aws cloudwatch get-metric-statistics \
 | Slow response | Cache hit rate | Verify cache headers |
 | Certificate error | ACM status | Check renewal/validation |
 
-## Cost Estimation
+## Quick Actions
 
-```bash
-# Get current month costs (requires Cost Explorer API access)
-aws ce get-cost-and-usage \
-  --time-period Start=$(date +%Y-%m-01),End=$(date +%Y-%m-%d) \
-  --granularity MONTHLY \
-  --metrics BlendedCost \
-  --filter '{
-    "Dimensions": {
-      "Key": "SERVICE",
-      "Values": ["Amazon CloudFront", "Amazon S3"]
-    }
-  }'
-```
+After status check, offer these actions:
+
+1. **Invalidate cache** - Create new CloudFront invalidation
+2. **View logs** - Open CloudWatch logs (if Lambda@Edge)
+3. **Redeploy** - Run `/aws-docusaurus:deploy`
 
 ## CI/CD Examples
 

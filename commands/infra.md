@@ -2,22 +2,36 @@
 
 Creates complete AWS infrastructure for hosting static sites with CloudFront CDN, S3 storage, HTTPS, and optional Basic Authentication.
 
-## Required Environment Variables
+## Interactive Configuration
 
-```bash
-export SITE_NAME="my-site"              # Resource naming
-export DOMAIN="site.example.com"        # Custom domain
-export HOSTED_ZONE_ID="Z1234567890"     # Route53 hosted zone ID
-export AWS_PROFILE="default"            # AWS CLI profile
-export AWS_REGION="eu-west-3"           # S3/primary region
-```
+Before proceeding, check if required environment variables are set. If any are missing, ask the user for the values using AskUserQuestion.
 
-## Optional - Basic Auth
+### Required Variables Check
 
-```bash
-export AUTH_USERNAME="admin"
-export AUTH_PASSWORD="SecurePassword123!"
-```
+Check these environment variables and prompt for missing ones:
+
+1. **SITE_NAME** - Resource naming, S3 bucket name (e.g., "my-site")
+2. **DOMAIN** - Custom domain with subdomain (e.g., "docs.example.com")
+3. **HOSTED_ZONE_ID** - Route53 hosted zone ID (e.g., "Z1234567890ABC")
+4. **AWS_PROFILE** - AWS CLI profile name (default: "default")
+5. **AWS_REGION** - Primary AWS region (default: "eu-west-3")
+
+### Optional - Basic Authentication
+
+Ask the user if they want to enable Basic Auth protection:
+
+- **Enable Basic Auth?** - Yes/No question
+- If yes, ask for:
+  - **AUTH_USERNAME** - Username for Basic Auth
+  - **AUTH_PASSWORD** - Password (min 8 chars, suggest strong password)
+
+## Execution Flow
+
+1. Check environment variables
+2. Use AskUserQuestion for any missing required variables
+3. Ask about Basic Auth option
+4. Show summary and confirm before creating infrastructure
+5. Execute infrastructure creation steps
 
 ## Architecture Created
 
@@ -114,7 +128,7 @@ export AUTH_PASSWORD="SecurePassword123!"
 
 ## Output Variables
 
-After successful execution:
+After successful execution, display and suggest exporting:
 
 ```bash
 export S3_BUCKET="${SITE_NAME}"
@@ -136,13 +150,6 @@ curl -I https://${DOMAIN}
 curl -u ${AUTH_USERNAME}:${AUTH_PASSWORD} https://${DOMAIN}
 ```
 
-## Estimated Time
-
-- S3 Bucket: ~30 seconds
-- ACM Certificate: 5-30 minutes (DNS validation)
-- CloudFront Distribution: 15-30 minutes (first deployment)
-- Total: ~20-60 minutes
-
 ## Security Features
 
 - **S3**: Private bucket, no public access
@@ -152,4 +159,4 @@ curl -u ${AUTH_USERNAME}:${AUTH_PASSWORD} https://${DOMAIN}
 
 ## Next Steps
 
-Run `/aws-docusaurus deploy` to deploy your site content.
+Run `/aws-docusaurus:deploy` to deploy your site content.

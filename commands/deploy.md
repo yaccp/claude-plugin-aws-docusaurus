@@ -2,30 +2,50 @@
 
 Deploys static site content to AWS S3 + CloudFront with optimized caching strategy.
 
-## Prerequisites
+## Interactive Configuration
 
-- Infrastructure created by `/aws-docusaurus infra`
-- AWS CLI configured
-- Site ready to build
+Before proceeding, check if required environment variables are set. If any are missing, ask the user for the values using AskUserQuestion.
 
-## Required Environment Variables
+### Required Variables Check
 
-```bash
-export S3_BUCKET="my-site"
-export CLOUDFRONT_DISTRIBUTION_ID="E1234567890ABC"
-export BUILD_COMMAND="npm run build"
-export BUILD_DIR="build"
-export AWS_PROFILE="default"
-export AWS_REGION="eu-west-3"
-```
+Check these environment variables and prompt for missing ones:
 
-## Optional Variables
+1. **S3_BUCKET** - S3 bucket name (e.g., "my-site")
+2. **CLOUDFRONT_DISTRIBUTION_ID** - CloudFront distribution ID (e.g., "E1234567890ABC")
+3. **BUILD_DIR** - Build output directory (default based on framework detection)
+4. **AWS_PROFILE** - AWS CLI profile (default: "default")
+5. **AWS_REGION** - AWS region (default: "eu-west-3")
 
-```bash
-export SITE_URL="https://site.example.com"
-export AUTH_USERNAME="admin"      # if using Basic Auth
-export AUTH_PASSWORD="secret"     # if using Basic Auth
-```
+### Auto-Detection
+
+Try to auto-detect:
+- **BUILD_COMMAND**: Detect from package.json scripts
+- **BUILD_DIR**: Detect based on framework (build, dist, out, public)
+- **Framework**: Check for docusaurus.config.*, next.config.*, vite.config.*, etc.
+
+### Framework Detection Table
+
+| Framework | Detection | BUILD_COMMAND | BUILD_DIR |
+|-----------|-----------|---------------|-----------|
+| Docusaurus | docusaurus.config.* | `npm run build` | `build` |
+| Next.js | next.config.* | `npm run build` | `out` |
+| Vite | vite.config.* | `npm run build` | `dist` |
+| Vue CLI | vue.config.* | `npm run build` | `dist` |
+| Create React App | react-scripts in package.json | `npm run build` | `build` |
+| Hugo | config.toml/hugo.toml | `hugo --minify` | `public` |
+| Astro | astro.config.* | `npm run build` | `dist` |
+| Gatsby | gatsby-config.* | `gatsby build` | `public` |
+
+## Execution Flow
+
+1. Check environment variables
+2. Auto-detect framework and build settings
+3. Use AskUserQuestion for any missing required variables
+4. Confirm settings before deploying
+5. Build the site
+6. Deploy to S3 with optimized cache headers
+7. Invalidate CloudFront cache
+8. Show deployment summary
 
 ## Cache Strategy
 
@@ -92,18 +112,9 @@ aws cloudfront create-invalidation \
   --paths "/*"
 ```
 
-## Framework Configurations
-
-| Framework | BUILD_COMMAND | BUILD_DIR |
-|-----------|---------------|-----------|
-| Docusaurus | `npm run build` | `build` |
-| Next.js (static) | `npm run build && npm run export` | `out` |
-| Vite/Vue/React | `npm run build` | `dist` |
-| Hugo | `hugo --minify` | `public` |
-| Astro | `npm run build` | `dist` |
-| Gatsby | `gatsby build` | `public` |
-
 ## Verification
+
+After deployment, verify:
 
 ```bash
 # Check distribution status
@@ -116,18 +127,11 @@ curl -I ${SITE_URL}
 
 # Check cache headers
 curl -I ${SITE_URL}/index.html 2>/dev/null | grep -i cache-control
-
-# List S3 contents
-aws s3 ls s3://${S3_BUCKET}/ --recursive --human-readable
 ```
 
-## Deployment Time
-
-- Build: Depends on project size
-- S3 Sync: 10-60 seconds (depends on file count)
-- CloudFront Invalidation: 1-5 minutes
-
 ## Rollback
+
+If issues occur:
 
 ```bash
 # Redeploy previous version
@@ -141,6 +145,6 @@ aws cloudfront create-invalidation \
   --paths "/*"
 ```
 
-## CI/CD Integration
+## Next Steps
 
-See `/aws-docusaurus status` for GitHub Actions and GitLab CI examples.
+Run `/aws-docusaurus:status` to monitor your deployment.
