@@ -122,7 +122,7 @@ echo "3. Commands Validation"
 echo "-------------------------------------------"
 
 COMMANDS_DIR="$PLUGIN_DIR/commands"
-COMMAND_FILES=(yaccp-aws-docusaurus-init.md yaccp-aws-docusaurus-infra.md yaccp-aws-docusaurus-deploy.md yaccp-aws-docusaurus-status.md)
+COMMAND_FILES=(aws-docusaurus-init.md aws-docusaurus-infra.md aws-docusaurus-deploy.md aws-docusaurus-status.md)
 
 for cmd in "${COMMAND_FILES[@]}"; do
     CMD_PATH="$COMMANDS_DIR/$cmd"

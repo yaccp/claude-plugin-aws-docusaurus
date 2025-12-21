@@ -1,7 +1,7 @@
 {
-  "name": "yaccp-aws-docusaurus",
+  "name": "yaccp",
   "description": "Deploy Docusaurus sites to AWS with S3, CloudFront, and optional Basic Auth",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "author": {
     "name": "Cyril Feraudet",
     "url": "https://github.com/feraudet"
