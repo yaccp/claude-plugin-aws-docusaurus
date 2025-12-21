@@ -6,7 +6,7 @@
     "url": "https://github.com/feraudet"
   },
   "metadata": {
-    "version": "1.1.12",
+    "version": "1.1.14",
     "description": "Complete AWS deployment solutions for static sites"
   },
   "plugins": [
@@ -14,7 +14,7 @@
       "name": "yaccp-aws-docusaurus",
       "source": "./",
       "description": "Deploy static sites to AWS with S3, CloudFront, ACM, Route53, and optional Lambda@Edge Basic Auth",
-      "version": "1.1.12",
+      "version": "1.1.14",
       "author": {
         "name": "Cyril Feraudet"
       },
