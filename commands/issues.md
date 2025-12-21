@@ -1,5 +1,4 @@
 ---
-name: issues
 description: Create a GitHub issue for this plugin
 ---
 

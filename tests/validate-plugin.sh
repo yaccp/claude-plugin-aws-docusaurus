@@ -94,12 +94,12 @@ if command -v jq &> /dev/null; then
         fi
     done
 
-    # Check commands array
-    CMD_COUNT=$(jq '.commands | length' "$PLUGIN_JSON" 2>/dev/null || echo 0)
+    # Check commands directory exists (commands field in plugin.json is optional)
+    CMD_COUNT=$(find "$PLUGIN_DIR/commands" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
     if [[ "$CMD_COUNT" -gt 0 ]]; then
-        pass "plugin.json has $CMD_COUNT commands defined"
+        pass "Found $CMD_COUNT command files in commands/"
     else
-        fail "plugin.json has no commands defined"
+        fail "No command files found in commands/"
     fi
 
     # Check version format (semver)

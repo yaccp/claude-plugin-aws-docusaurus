@@ -1,5 +1,4 @@
 ---
-name: init
 description: Initialize a new Docusaurus project pre-configured for AWS deployment
 ---
 

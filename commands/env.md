@@ -1,5 +1,4 @@
 ---
-name: env
 description: Manage AWS environments (dev/staging/prod)
 ---
 

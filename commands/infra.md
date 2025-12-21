@@ -1,5 +1,4 @@
 ---
-name: infra
 description: Create complete AWS infrastructure (S3, CloudFront, ACM, Route53)
 ---
 

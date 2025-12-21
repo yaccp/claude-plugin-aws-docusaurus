@@ -1,5 +1,4 @@
 ---
-name: status
 description: Check AWS infrastructure status and health
 ---
 

@@ -1,5 +1,4 @@
 ---
-name: deploy
 description: Build and deploy site to S3 with CloudFront cache invalidation
 ---
 

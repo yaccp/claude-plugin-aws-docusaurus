@@ -1,23 +1,9 @@
 {
   "name": "yaccp-aws-docusaurus",
-  "version": "1.1.11",
-  "description": "Deploy Docusaurus sites to AWS with S3, CloudFront, and optional Basic Auth. Complete infrastructure-as-code solution.",
+  "description": "Deploy Docusaurus sites to AWS with S3, CloudFront, and optional Basic Auth",
+  "version": "1.1.12",
   "author": {
     "name": "Cyril Feraudet",
     "url": "https://github.com/feraudet"
-  },
-  "license": "Apache-2.0",
-  "repository": "https://github.com/yaccp/claude-plugin-aws-docusaurus",
-  "homepage": "https://github.com/yaccp/claude-plugin-aws-docusaurus",
-  "keywords": [
-    "aws",
-    "docusaurus",
-    "s3",
-    "cloudfront",
-    "static-site",
-    "deployment",
-    "infrastructure"
-  ],
-  "commands": "./commands/",
-  "skills": "./skills/"
+  }
 }

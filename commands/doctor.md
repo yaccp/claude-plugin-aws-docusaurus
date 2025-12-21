@@ -1,5 +1,4 @@
 ---
-name: doctor
 description: Diagnose issues with plugin configuration and AWS setup
 ---
 

@@ -1,5 +1,4 @@
 ---
-name: destroy-infra
 description: Destroy all AWS infrastructure created by infra command
 ---
 
