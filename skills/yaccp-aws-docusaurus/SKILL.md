@@ -25,7 +25,7 @@ Each environment can have its own:
 - S3 bucket and CloudFront distribution
 - Domain and Route53 hosted zone
 
-Configure environments via `/yaccp-aws-docusaurus:env` or environment variables.
+Configure environments via `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-env` or environment variables.
 
 ## Quick Start
 
@@ -70,13 +70,13 @@ Then ask: "Deploy my site with AWS Docusaurus"
 
 | Command | Description |
 |---------|-------------|
-| `/yaccp-aws-docusaurus:env` | Manage AWS environments |
-| `/yaccp-aws-docusaurus:init` | Initialize Docusaurus project |
-| `/yaccp-aws-docusaurus:infra` | Create AWS infrastructure |
-| `/yaccp-aws-docusaurus:deploy` | Build and deploy site |
-| `/yaccp-aws-docusaurus:status` | Check infrastructure status |
-| `/yaccp-aws-docusaurus:destroy-infra` | Destroy AWS infrastructure |
-| `/yaccp-aws-docusaurus:doctor` | Diagnose issues |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-env` | Manage AWS environments |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-init` | Initialize Docusaurus project |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra` | Create AWS infrastructure |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy` | Build and deploy site |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-status` | Check infrastructure status |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-destroy-infra` | Destroy AWS infrastructure |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-doctor` | Diagnose issues |
 
 ## Architecture
 

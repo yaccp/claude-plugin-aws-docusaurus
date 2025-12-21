@@ -22,7 +22,7 @@ This plugin supports multiple AWS environments/accounts:
 └── currentEnvironment: "dev"
 ```
 
-Use `/yaccp-aws-docusaurus:env` to manage environments.
+Use `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-env` to manage environments.
 
 Override temporarily with: `export PLUGIN_ENV=staging`
 
@@ -30,14 +30,17 @@ Override temporarily with: `export PLUGIN_ENV=staging`
 
 | Command | Purpose |
 |---------|---------|
-| `/yaccp-aws-docusaurus:env` | Manage AWS environments (dev/staging/prod) |
-| `/yaccp-aws-docusaurus:init` | Create new Docusaurus project with AWS-ready config |
-| `/yaccp-aws-docusaurus:infra` | Provision complete AWS infrastructure |
-| `/yaccp-aws-docusaurus:deploy` | Build and deploy to S3 + invalidate CloudFront |
-| `/yaccp-aws-docusaurus:status` | Check infrastructure health and status |
-| `/yaccp-aws-docusaurus:destroy-infra` | Destroy all AWS infrastructure |
-| `/yaccp-aws-docusaurus:doctor` | Diagnose issues with plugin and AWS setup |
-| `/yaccp-aws-docusaurus:issues` | Create a GitHub issue for this plugin |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-env` | Manage AWS environments (dev/staging/prod) |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-init` | Create new Docusaurus project with AWS-ready config |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra` | Provision complete AWS infrastructure |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy` | Build and deploy to S3 + invalidate CloudFront |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-status` | Check infrastructure health and status |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-destroy-infra` | Destroy all AWS infrastructure |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-doctor` | Diagnose issues with plugin and AWS setup |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-issues` | Create a GitHub issue for this plugin |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-start-local-server` | Start the local development server |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-stop-local-server` | Stop the local development server |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-status-local-server` | Check local server status |
 
 ## Key Files
 
@@ -47,14 +50,17 @@ Override temporarily with: `export PLUGIN_ENV=staging`
 └── marketplace.json     # Marketplace listing
 
 commands/
-├── env.md               # /yaccp-aws-docusaurus:env
-├── init.md              # /yaccp-aws-docusaurus:init
-├── infra.md             # /yaccp-aws-docusaurus:infra
-├── deploy.md            # /yaccp-aws-docusaurus:deploy
-├── status.md            # /yaccp-aws-docusaurus:status
-├── destroy-infra.md     # /yaccp-aws-docusaurus:destroy-infra
-├── doctor.md            # /yaccp-aws-docusaurus:doctor
-└── issues.md            # /yaccp-aws-docusaurus:issues
+├── env.md                    # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-env
+├── init.md                   # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-init
+├── infra.md                  # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
+├── deploy.md                 # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy
+├── status.md                 # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-status
+├── destroy-infra.md          # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-destroy-infra
+├── doctor.md                 # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-doctor
+├── issues.md                 # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-issues
+├── start-local-server.md     # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-start-local-server
+├── stop-local-server.md      # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-stop-local-server
+└── status-local-server.md    # /yaccp-aws-docusaurus:yaccp-aws-docusaurus-status-local-server
 
 assets/
 ├── diagrams/*.svg       # Architecture diagrams
@@ -89,6 +95,12 @@ Commands persist configuration to: `.claude/yaccp/aws-docusaurus/config.json`
     "AWS_REGION": "eu-west-1",
     "BUILD_COMMAND": "npm run build",
     "BUILD_DIR": "build"
+  },
+  "localServer": {
+    "PORT": "3000",
+    "HOST": "localhost",
+    "PID": null,
+    "STARTED_AT": null
   }
 }
 ```

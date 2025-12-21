@@ -32,11 +32,11 @@ Use AskUserQuestion:
 [Text input]
 
 ? Which command were you using?
-○ /yaccp-aws-docusaurus:init
-○ /yaccp-aws-docusaurus:infra
-○ /yaccp-aws-docusaurus:deploy
-○ /yaccp-aws-docusaurus:status
-○ /yaccp-aws-docusaurus:destroy-infra
+○ /yaccp-aws-docusaurus:yaccp-aws-docusaurus-init
+○ /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
+○ /yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy
+○ /yaccp-aws-docusaurus:yaccp-aws-docusaurus-status
+○ /yaccp-aws-docusaurus:yaccp-aws-docusaurus-destroy-infra
 ○ Other
 
 ? AWS Region:
@@ -97,12 +97,12 @@ CloudFront distribution fails to create with access denied error.
 CloudFront should be created successfully.
 
 ## Steps to Reproduce
-1. Run /yaccp-aws-docusaurus:infra
+1. Run /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
 2. Enter domain: docs.example.com
 3. Wait for CloudFront creation
 
 ## Environment
-- Command: /yaccp-aws-docusaurus:infra
+- Command: /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
 - AWS Region: eu-west-3
 - Plugin Version: 1.1.8
 
@@ -136,12 +136,12 @@ CloudFront distribution fails to create with access denied error.
 CloudFront should be created successfully.
 
 ## Steps to Reproduce
-1. Run /yaccp-aws-docusaurus:infra
+1. Run /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
 2. Enter domain: docs.example.com
 3. Wait for CloudFront creation
 
 ## Environment
-- Command: /yaccp-aws-docusaurus:infra
+- Command: /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
 - AWS Region: eu-west-3
 - Plugin Version: 1.1.8
 

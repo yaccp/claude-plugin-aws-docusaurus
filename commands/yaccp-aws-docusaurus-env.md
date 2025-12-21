@@ -188,12 +188,12 @@ Current environment: ${CURRENT_ENV}
 Config saved to: .claude/yaccp/aws-docusaurus/config.json
 
 Available commands:
-• /yaccp-aws-docusaurus:infra   - Create infrastructure for current env
-• /yaccp-aws-docusaurus:deploy  - Deploy to current env
-• /yaccp-aws-docusaurus:status  - Check current env status
+• /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra   - Create infrastructure for current env
+• /yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy  - Deploy to current env
+• /yaccp-aws-docusaurus:yaccp-aws-docusaurus-status  - Check current env status
 
 To switch environment:
-• /yaccp-aws-docusaurus:env
+• /yaccp-aws-docusaurus:yaccp-aws-docusaurus-env
 • Or: export PLUGIN_ENV=staging
 ```
 
@@ -203,7 +203,7 @@ Users can override the current environment temporarily:
 
 ```bash
 export PLUGIN_ENV=staging
-/yaccp-aws-docusaurus:deploy  # Will use staging
+/yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy  # Will use staging
 ```
 
 This is useful for CI/CD pipelines.

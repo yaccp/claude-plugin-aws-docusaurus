@@ -164,5 +164,5 @@ Site URL:        https://${DOMAIN}
 Files uploaded:  ${FILE_COUNT}
 Invalidation:    ${INVALIDATION_ID}
 
-Check status: /yaccp-aws-docusaurus:status
+Check status: /yaccp-aws-docusaurus:yaccp-aws-docusaurus-status
 ```

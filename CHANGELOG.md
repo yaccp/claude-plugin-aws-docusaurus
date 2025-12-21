@@ -5,6 +5,29 @@ All notable changes to AWS Docusaurus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.18] - 2024-12-21
+
+### Added
+
+- **New command** `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-start-local-server`
+  - Start the local development server for Docusaurus
+  - Auto-detect project type and configuration
+  - Handle port conflicts with interactive prompts
+  - Save server PID for status/stop commands
+
+- **New command** `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-stop-local-server`
+  - Stop the running local development server
+  - Graceful shutdown with fallback to force kill
+  - Clean up server configuration
+
+- **New command** `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-status-local-server`
+  - Check local server status (running/stopped)
+  - Display process info (PID, uptime, CPU, memory)
+  - Test HTTP health endpoint
+  - Clean up stale configuration if server crashed
+
+---
+
 ## [1.1.12] - 2024-12-21
 
 ### Fixed
@@ -30,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **New command** `/yaccp-aws-docusaurus:doctor`
+- **New command** `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-doctor`
   - Diagnose issues with plugin configuration and AWS setup
   - Check prerequisites (CLI tools, AWS credentials)
   - Verify AWS resources (S3, CloudFront, ACM, Route53)
@@ -38,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Detect common issues with suggested fixes
   - Offer to create GitHub issue if problem persists
 
-- **New command** `/yaccp-aws-docusaurus:env`
+- **New command** `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-env`
   - Manage multiple AWS environments (dev/staging/prod)
   - Switch between environments easily
   - Override temporarily with `PLUGIN_ENV` variable
@@ -57,7 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **New command** `/yaccp-aws-docusaurus:issues`
+- **New command** `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-issues`
   - Interactive GitHub issue creation for the plugin
   - Supports Bug Report, Feature Request, Question, and Documentation types
   - Guided prompts with issue preview before submission
@@ -74,8 +97,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **New command** `/yaccp-aws-docusaurus:destroy-infra`
-  - Destroy all AWS infrastructure created by `/yaccp-aws-docusaurus:infra`
+- **New command** `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-destroy-infra`
+  - Destroy all AWS infrastructure created by `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra`
   - Ordered deletion respecting AWS dependencies
   - Double confirmation for safety
   - Handles Route53, CloudFront, S3, ACM, Lambda@Edge, and OAI cleanup
@@ -202,6 +225,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| 1.1.18 | 2024-12-21 | New local server commands (start/stop/status) |
 | 1.1.12 | 2024-12-21 | Fix: Simplified plugin.json, correct frontmatter format |
 | 1.1.11 | 2024-12-21 | Fix: Added YAML frontmatter to commands |
 | 1.1.10 | 2024-12-21 | New `/doctor` and `/env` commands, maintenance agents |
@@ -232,16 +256,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
    ```diff
    - /aws-docusaurus init
-   + /yaccp-aws-docusaurus:init
+   + /yaccp-aws-docusaurus:yaccp-aws-docusaurus-init
 
    - /aws-docusaurus infra
-   + /yaccp-aws-docusaurus:infra
+   + /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
 
    - /aws-docusaurus deploy
-   + /yaccp-aws-docusaurus:deploy
+   + /yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy
 
    - /aws-docusaurus status
-   + /yaccp-aws-docusaurus:status
+   + /yaccp-aws-docusaurus:yaccp-aws-docusaurus-status
    ```
 
 3. **Existing infrastructure is unaffected** - no AWS changes needed.

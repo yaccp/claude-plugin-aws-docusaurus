@@ -34,34 +34,37 @@
 
 ```bash
 # 1. Initialize a new Docusaurus project
-/yaccp-aws-docusaurus:init
+/yaccp-aws-docusaurus:yaccp-aws-docusaurus-init
 
 # 2. Create AWS infrastructure
-/yaccp-aws-docusaurus:infra
+/yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
 
 # 3. Deploy
-/yaccp-aws-docusaurus:deploy
+/yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy
 ```
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/yaccp-aws-docusaurus:env` | Manage AWS environments (dev/staging/prod) |
-| `/yaccp-aws-docusaurus:init` | Initialize a new Docusaurus project pre-configured for AWS |
-| `/yaccp-aws-docusaurus:infra` | Create complete AWS infrastructure (S3, CloudFront, ACM, Route53) |
-| `/yaccp-aws-docusaurus:deploy` | Build and deploy site with optimized caching |
-| `/yaccp-aws-docusaurus:status` | Check infrastructure status and health |
-| `/yaccp-aws-docusaurus:destroy-infra` | Destroy all AWS infrastructure |
-| `/yaccp-aws-docusaurus:doctor` | Diagnose issues with plugin and AWS setup |
-| `/yaccp-aws-docusaurus:issues` | Create a GitHub issue for this plugin |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-env` | Manage AWS environments (dev/staging/prod) |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-init` | Initialize a new Docusaurus project pre-configured for AWS |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra` | Create complete AWS infrastructure (S3, CloudFront, ACM, Route53) |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy` | Build and deploy site with optimized caching |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-status` | Check infrastructure status and health |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-destroy-infra` | Destroy all AWS infrastructure |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-doctor` | Diagnose issues with plugin and AWS setup |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-issues` | Create a GitHub issue for this plugin |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-start-local-server` | Start the local development server |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-stop-local-server` | Stop the local development server |
+| `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-status-local-server` | Check local server status |
 
 ## Interactive Prompts
 
 Each command guides you through configuration with interactive prompts:
 
 <details>
-<summary><strong>/yaccp-aws-docusaurus:init</strong></summary>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-init</strong></summary>
 
 ```
 ? Project name: my-docs
@@ -85,7 +88,7 @@ Proceed with initialization?
 </details>
 
 <details>
-<summary><strong>/yaccp-aws-docusaurus:infra</strong></summary>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra</strong></summary>
 
 ```
 ? Site name (S3 bucket): my-docs
@@ -121,7 +124,7 @@ Proceed?
 </details>
 
 <details>
-<summary><strong>/yaccp-aws-docusaurus:deploy</strong></summary>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy</strong></summary>
 
 ```
 Detected framework: Docusaurus
@@ -147,7 +150,7 @@ Proceed?
 </details>
 
 <details>
-<summary><strong>/yaccp-aws-docusaurus:status</strong></summary>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-status</strong></summary>
 
 ```
 AWS Docusaurus Status
@@ -181,7 +184,7 @@ Site Health: https://docs.example.com
 </details>
 
 <details>
-<summary><strong>/yaccp-aws-docusaurus:destroy-infra</strong></summary>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-destroy-infra</strong></summary>
 
 ```
 ⚠️  INFRASTRUCTURE DESTRUCTION
@@ -210,7 +213,7 @@ This will PERMANENTLY DELETE:
 </details>
 
 <details>
-<summary><strong>/yaccp-aws-docusaurus:doctor</strong></summary>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-doctor</strong></summary>
 
 ```
 AWS Docusaurus Doctor
@@ -261,13 +264,13 @@ IAM Permissions:   ✓ All OK
 ? What would you like to do next?
 ○ View detailed error logs
 ○ Create a GitHub issue
-○ Run /yaccp-aws-docusaurus:status
+○ Run /yaccp-aws-docusaurus:yaccp-aws-docusaurus-status
 ● Nothing, I'll fix it myself
 ```
 </details>
 
 <details>
-<summary><strong>/yaccp-aws-docusaurus:issues</strong></summary>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-issues</strong></summary>
 
 ```
 ? What type of issue would you like to create?
@@ -281,7 +284,7 @@ For Bug Report:
 ```
 ? Describe the bug: CloudFront creation fails
 ? Expected behavior: Should create successfully
-? Which command? /yaccp-aws-docusaurus:infra
+? Which command? /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
 ? Error message: AccessDenied...
 ```
 
@@ -299,7 +302,7 @@ CloudFront creation fails with AccessDenied error.
 Should create successfully.
 
 ## Environment
-- Command: /yaccp-aws-docusaurus:infra
+- Command: /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
 - Plugin Version: 1.1.8
 
 ---
@@ -316,6 +319,78 @@ Issue created successfully!
 
 Issue #42: [Bug] CloudFront creation fails
 URL: https://github.com/yaccp/claude-plugin-aws-docusaurus/issues/42
+```
+</details>
+
+<details>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-start-local-server</strong></summary>
+
+```
+Detected: Docusaurus project
+```
+
+```
+? A server is already running on port 3000. What would you like to do?
+○ Stop it and start a new one
+○ Use a different port
+● Cancel
+```
+
+```
+Local Development Server Started
+================================
+
+URL:     http://localhost:3000
+PID:     12345
+Status:  Running
+
+The server will hot-reload on file changes.
+```
+</details>
+
+<details>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-status-local-server</strong></summary>
+
+```
+Local Development Server Status
+================================
+
+Status:      Running
+URL:         http://localhost:3000
+PID:         12345
+Started:     2024-12-21T10:30:00Z
+Uptime:      2h 15m
+Health:      Healthy
+
+Process Info:
+├── CPU:     0.5%
+├── Memory:  128 MB
+└── Command: node docusaurus start
+```
+
+```
+? What would you like to do?
+○ Open in browser
+○ Stop the server
+○ View server logs
+● Nothing, done
+```
+</details>
+
+<details>
+<summary><strong>/yaccp-aws-docusaurus:yaccp-aws-docusaurus-stop-local-server</strong></summary>
+
+```
+? Found local server running on port 3000 (PID: 12345). Stop it?
+● Yes, stop the server
+○ No, keep it running
+```
+
+```
+Local Development Server Stopped
+=================================
+
+Port 3000 is now available.
 ```
 </details>
 
@@ -345,10 +420,10 @@ Each environment can have:
 - Different domains and hosted zones
 - Independent S3 buckets and CloudFront distributions
 
-Use `/yaccp-aws-docusaurus:env` to manage environments, or override with:
+Use `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-env` to manage environments, or override with:
 ```bash
 export PLUGIN_ENV=staging
-/yaccp-aws-docusaurus:deploy
+/yaccp-aws-docusaurus:yaccp-aws-docusaurus-deploy
 ```
 
 ## Supported Frameworks

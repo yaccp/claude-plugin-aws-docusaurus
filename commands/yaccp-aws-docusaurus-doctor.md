@@ -61,7 +61,7 @@ If config file not found:
 Plugin Configuration:
 └── Config file:  ✗ Not found
 
-Suggestion: Run /yaccp-aws-docusaurus:infra to create infrastructure
+Suggestion: Run /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra to create infrastructure
 ```
 
 ### Step 3: Check AWS Resources
@@ -167,7 +167,7 @@ Use AskUserQuestion:
 "What would you like to do next?"
 - "View detailed error logs"
 - "Create a GitHub issue"
-- "Run /yaccp-aws-docusaurus:status"
+- "Run /yaccp-aws-docusaurus:yaccp-aws-docusaurus-status"
 - "Nothing, I'll fix it myself"
 
 #### If "View detailed error logs":
@@ -186,7 +186,7 @@ The following will be included:
 Note: Sensitive information (account IDs, ARNs) will be redacted.
 ```
 
-Then run `/yaccp-aws-docusaurus:issues` with pre-filled information.
+Then run `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-issues` with pre-filled information.
 
 ## Diagnostic Checks Reference
 
@@ -206,8 +206,8 @@ Then run `/yaccp-aws-docusaurus:issues` with pre-filled information.
 |-------|-------|----------|
 | `ExpiredToken` | AWS session expired | Run `aws sso login` or refresh credentials |
 | `AccessDenied` on S3 | Missing permissions | Check IAM policy |
-| `NoSuchBucket` | Bucket doesn't exist | Run `/yaccp-aws-docusaurus:infra` |
-| `NoSuchDistribution` | CloudFront not found | Run `/yaccp-aws-docusaurus:infra` |
+| `NoSuchBucket` | Bucket doesn't exist | Run `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra` |
+| `NoSuchDistribution` | CloudFront not found | Run `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra` |
 | `InvalidChangeBatch` | DNS record conflict | Check existing Route53 records |
 | `LimitExceeded` | AWS quota reached | Request limit increase |
 

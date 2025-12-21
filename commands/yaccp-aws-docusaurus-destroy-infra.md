@@ -4,7 +4,7 @@ description: Destroy all AWS infrastructure created by infra command
 
 # AWS Docusaurus: Destroy Infrastructure
 
-Destroy all AWS infrastructure created by `/yaccp-aws-docusaurus:infra` for the selected environment.
+Destroy all AWS infrastructure created by `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra` for the selected environment.
 
 ## Configuration Storage
 
@@ -62,7 +62,7 @@ If no configuration exists, inform the user:
 ```
 No infrastructure configuration found at .claude/yaccp/aws-docusaurus/config.json
 
-Run /yaccp-aws-docusaurus:infra first to create infrastructure, or provide
+Run /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra first to create infrastructure, or provide
 the resource IDs manually.
 ```
 
@@ -322,7 +322,7 @@ Infrastructure Destroyed
 
 Configuration cleaned from .claude/yaccp/aws-docusaurus/config.json
 
-To recreate infrastructure: /yaccp-aws-docusaurus:infra
+To recreate infrastructure: /yaccp-aws-docusaurus:yaccp-aws-docusaurus-infra
 ```
 
 ## Error Handling
