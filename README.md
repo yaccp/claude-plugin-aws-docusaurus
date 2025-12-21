@@ -52,6 +52,7 @@
 | `/yaccp-aws-docusaurus:deploy` | Build and deploy site with optimized caching |
 | `/yaccp-aws-docusaurus:status` | Check infrastructure status and health |
 | `/yaccp-aws-docusaurus:destroy-infra` | Destroy all AWS infrastructure |
+| `/yaccp-aws-docusaurus:doctor` | Diagnose issues with plugin and AWS setup |
 | `/yaccp-aws-docusaurus:issues` | Create a GitHub issue for this plugin |
 
 ## Interactive Prompts
@@ -204,6 +205,63 @@ This will PERMANENTLY DELETE:
 
 ```
 ? Type 'destroy' to confirm: destroy
+```
+</details>
+
+<details>
+<summary><strong>/yaccp-aws-docusaurus:doctor</strong></summary>
+
+```
+AWS Docusaurus Doctor
+=====================
+
+Checking prerequisites...
+
+CLI Tools:
+├── aws CLI:      ✓ v2.15.0
+├── gh CLI:       ✓ v2.40.0
+├── node:         ✓ v20.10.0
+└── npm:          ✓ v10.2.3
+
+AWS Configuration:
+├── Profile:      default
+├── Region:       eu-west-3
+├── Credentials:  ✓ Valid
+└── Identity:     arn:aws:iam::***:user/deploy
+```
+
+```
+AWS Resources:
+├── S3 Bucket:
+│   ├── Exists:   ✓
+│   └── Objects:  142
+├── CloudFront:
+│   ├── Status:   Deployed
+│   └── Enabled:  true
+├── ACM Certificate:
+│   └── Status:   ISSUED
+└── Route53 Record:
+    └── Exists:   ✓
+```
+
+```
+Diagnostic Summary
+==================
+
+Status: 1 issue found
+
+Prerequisites:     ✓ All OK
+Configuration:     ✓ Found
+AWS Resources:     ⚠️ 1 warning
+IAM Permissions:   ✓ All OK
+```
+
+```
+? What would you like to do next?
+○ View detailed error logs
+○ Create a GitHub issue
+○ Run /yaccp-aws-docusaurus:status
+● Nothing, I'll fix it myself
 ```
 </details>
 

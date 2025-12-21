@@ -18,6 +18,7 @@ AWS Docusaurus automates static site deployment to AWS. It creates and manages:
 | `/yaccp-aws-docusaurus:deploy` | Build and deploy to S3 + invalidate CloudFront |
 | `/yaccp-aws-docusaurus:status` | Check infrastructure health and status |
 | `/yaccp-aws-docusaurus:destroy-infra` | Destroy all AWS infrastructure |
+| `/yaccp-aws-docusaurus:doctor` | Diagnose issues with plugin and AWS setup |
 | `/yaccp-aws-docusaurus:issues` | Create a GitHub issue for this plugin |
 
 ## Key Files
@@ -32,7 +33,9 @@ commands/
 ├── infra.md             # /yaccp-aws-docusaurus:infra
 ├── deploy.md            # /yaccp-aws-docusaurus:deploy
 ├── status.md            # /yaccp-aws-docusaurus:status
-└── destroy-infra.md     # /yaccp-aws-docusaurus:destroy-infra
+├── destroy-infra.md     # /yaccp-aws-docusaurus:destroy-infra
+├── doctor.md            # /yaccp-aws-docusaurus:doctor
+└── issues.md            # /yaccp-aws-docusaurus:issues
 
 templates/
 ├── cloudfront-distribution.json
