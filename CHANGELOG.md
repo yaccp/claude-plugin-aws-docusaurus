@@ -5,6 +5,16 @@ All notable changes to AWS Docusaurus will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.13] - 2024-12-21
+
+### Fixed
+
+- **Commands not appearing in Claude Code**
+  - Renamed command files with `yaccp-aws-docusaurus-` prefix
+  - Commands now appear as `/yaccp-aws-docusaurus:yaccp-aws-docusaurus-init`, etc.
+
+---
+
 ## [1.1.12] - 2024-12-21
 
 ### Fixed
@@ -202,6 +212,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| 1.1.13 | 2024-12-21 | Fix: Renamed command files with prefix |
 | 1.1.12 | 2024-12-21 | Fix: Simplified plugin.json, correct frontmatter format |
 | 1.1.11 | 2024-12-21 | Fix: Added YAML frontmatter to commands |
 | 1.1.10 | 2024-12-21 | New `/doctor` and `/env` commands, maintenance agents |
