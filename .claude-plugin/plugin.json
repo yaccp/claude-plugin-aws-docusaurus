@@ -9,6 +9,5 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/yaccp/aws-docusaurus",
   "keywords": ["aws", "s3", "cloudfront", "docusaurus", "static-site", "deployment"],
-  "commands": "./commands",
   "skills": "./skills"
 }
