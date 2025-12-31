@@ -9,8 +9,8 @@
     "Quantity": 1,
     "Items": [
       {
-        "Id": "S3-${SITE_NAME}",
-        "DomainName": "${SITE_NAME}.s3.${AWS_REGION}.amazonaws.com",
+        "Id": "S3-${S3_BUCKET}",
+        "DomainName": "${S3_BUCKET}.s3.${AWS_REGION}.amazonaws.com",
         "S3OriginConfig": {
           "OriginAccessIdentity": "origin-access-identity/cloudfront/${OAI_ID}"
         }
@@ -18,7 +18,7 @@
     ]
   },
   "DefaultCacheBehavior": {
-    "TargetOriginId": "S3-${SITE_NAME}",
+    "TargetOriginId": "S3-${S3_BUCKET}",
     "ViewerProtocolPolicy": "redirect-to-https",
     "AllowedMethods": {
       "Quantity": 2,

@@ -25,8 +25,13 @@ set -e  # Exit on error
 export AWS_PROFILE="${AWS_PROFILE:-default}"
 export AWS_REGION="${AWS_REGION:-eu-west-3}"
 
+# Get AWS Account ID automatically
+AWS_ACCOUNT_ID="${AWS_ACCOUNT_ID:-$(aws sts get-caller-identity --query Account --output text 2>/dev/null)}"
+
 # Infrastructure IDs (from aws-static-site-infra output)
-S3_BUCKET="${S3_BUCKET:-your-bucket-name}"
+# Bucket naming convention: ${SITE_NAME}-${AWS_ACCOUNT_ID}-${AWS_REGION}
+SITE_NAME="${SITE_NAME:-your-site-name}"
+S3_BUCKET="${S3_BUCKET:-${SITE_NAME}-${AWS_ACCOUNT_ID}-${AWS_REGION}}"
 CLOUDFRONT_DISTRIBUTION_ID="${CLOUDFRONT_DISTRIBUTION_ID:-E1234567890ABC}"
 
 # Build Configuration
@@ -60,8 +65,13 @@ echo "========================================"
 echo ""
 
 # Validate configuration
-if [[ "${S3_BUCKET}" == "your-bucket-name" ]]; then
-    echo -e "${RED}ERROR: S3_BUCKET not configured. Edit this script.${NC}"
+if [[ "${SITE_NAME}" == "your-site-name" ]]; then
+    echo -e "${RED}ERROR: SITE_NAME not configured. Edit this script.${NC}"
+    exit 1
+fi
+
+if [[ -z "${AWS_ACCOUNT_ID}" ]]; then
+    echo -e "${RED}ERROR: Could not determine AWS Account ID. Check AWS credentials.${NC}"
     exit 1
 fi
 
